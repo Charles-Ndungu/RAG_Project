@@ -8,6 +8,10 @@ app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
 
+@app.get("/")
+async def root():
+    return {"status": "healthy", "message": "RAG Project is running!"}
+
 @app.get("/test")
 def index():
     return [
@@ -16,8 +20,8 @@ def index():
             "Course": "Data Science"
         },
         {   
-            "Name": "John",
-            "Course": "Data Science"
+            "Name": "Cheryl",
+            "Course": "Data Engineering"
         }
     ]
 
