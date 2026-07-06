@@ -1,22 +1,16 @@
-import uvicorn
 from fastapi import FastAPI
 
 app = FastAPI()
 
-@app.get("/test")
-def index():
-    return [
-        {   
-            "Name": "Charles",
-            "Course": "Data Science"
-        },
-        {   
-            "Name": "John",
-            "Course": "Data Science"
-        }
-    ]
+@app.get("/")
+async def root():
+    return {"message": "Hello from RAG Project!"}
 
-if __name__ == "__main__":
-    uvicorn.run("main:app", host="0.0.0.0", port=5000)
+@app.get("/test")
+async def test():
+    return {"message": "Test endpoint working!"}
+
+# Vercel expects 'app' to be the FastAPI instance
+# If you have if __name__ == "__main__", keep it but Vercel ignores it
     
 
